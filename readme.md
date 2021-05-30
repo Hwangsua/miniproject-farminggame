@@ -1,7 +1,7 @@
 # miniproject-farminggame
 
 메가 IT 아카데미 미니 JAVA 프로젝트   
-※ 사용된 이미지 출처는 image_souce.md파일에 있습니다.
+
 
 
 # 1. 프로젝트 주제
@@ -312,3 +312,6 @@ public class FileUtils {
 
 
 # 8. Javadoc
+
+
+※ 사용된 이미지 출처는 image_souce.md파일에 있습니다.
