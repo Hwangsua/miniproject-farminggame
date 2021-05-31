@@ -1,6 +1,7 @@
 # miniproject-farminggame
 
 메가 IT 아카데미 미니 JAVA 프로젝트      
+   
 # 1. 프로젝트 주제
 
 본 프로젝트는 **Happy Farm**은 농장 게임으로 씨앗을 심고 농작물을 키워서 수확하는 게임이다.
