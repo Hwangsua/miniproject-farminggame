@@ -8,8 +8,7 @@
 
 본 프로젝트는 **Happy Farm**은 농장 게임으로 씨앗을 심고 농작물을 키워서 수확하는 게임이다.
 
-<img src="https://user-images.githubusercontent.com/76787224/120117974-02893380-c1cb-11eb-849d-c88cda43c450.PNG" width="40%">       
-<img src="https://user-images.githubusercontent.com/76787224/120117975-03ba6080-c1cb-11eb-8e63-6406a4661c61.PNG" width="40%">
+<img src="https://user-images.githubusercontent.com/76787224/120117974-02893380-c1cb-11eb-849d-c88cda43c450.PNG" width="40%">      <img src="https://user-images.githubusercontent.com/76787224/120117975-03ba6080-c1cb-11eb-8e63-6406a4661c61.PNG" width="40%">
 
 
 
