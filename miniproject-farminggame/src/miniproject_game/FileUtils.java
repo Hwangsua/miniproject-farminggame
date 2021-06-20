@@ -35,7 +35,7 @@ public class FileUtils {
 	 * user의 현재 경험치
 	 */
 	public static final String CURRENT_EXP = "currentExp";
-	/*
+	/**
 	 * 토마토 정보 리스트
 	 */
 	public static final String TOMATO_LIST = "tomatoList";
