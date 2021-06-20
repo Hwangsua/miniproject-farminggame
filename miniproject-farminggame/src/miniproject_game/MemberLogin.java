@@ -9,7 +9,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.*;
+
 /**
+ * 회원로그인 JPanel
  * 
  * @author SuaHwang
  * @author EunkyungHwang
@@ -17,32 +19,47 @@ import javax.swing.*;
  */
 public class MemberLogin extends JPanel {
 
-	int num = 0, result = 0;
-	String inputId = null, inputPw = null;
-
 	private Image background = new ImageIcon("image\\startLogin.png").getImage();
 
-	static final Font LABEL_FONT = new Font("맑은고딕", Font.BOLD, 15);
+	/**
+	 * 기본 폰트 설정
+	 */
 	static final Font TEXT_FONT = new Font("맑은고딕", Font.PLAIN, 15);
 
+	/**
+	 * TextField의 시작 x 좌표
+	 */
 	final int loginTextX = 517;
+	/**
+	 * TextField의 시작 y 좌표
+	 */
 	final int loginTextY = 293;
-
-	static final int LABEL_LENGTH = 30;
+	/**
+	 * TextField의 기본 길이
+	 */
 	static final int TEXT_LENGTH = 245;
-	static final int LOGIN_HEIGHT = 50;
+	/**
+	 * TextField의 기본 폭
+	 */
+	static final int TEXT_HEIGHT = 50;
 
+	/**
+	 * 아이디 입력란
+	 */
 	private JTextField idText;
+	/**
+	 * 비밀번호 입력란
+	 */
 	private HintPasswordField pwText;
 
 	MemberLogin() {
 
-		idText = new HintTextField(" 아이디를 입력하세요."); // 아이디 적는 칸
-		idText.setBounds(loginTextX, loginTextY, TEXT_LENGTH, LOGIN_HEIGHT);
+		idText = new HintTextField(" 아이디를 입력하세요.");
+		idText.setBounds(loginTextX, loginTextY, TEXT_LENGTH, TEXT_HEIGHT);
 		idText.setOpaque(false);
 
-		pwText = new HintPasswordField(" 비밀번호를 입력하세요."); // 비밀번호 적는 칸
-		pwText.setBounds(loginTextX, loginTextY + 125, TEXT_LENGTH, LOGIN_HEIGHT);
+		pwText = new HintPasswordField(" 비밀번호를 입력하세요.");
+		pwText.setBounds(loginTextX, loginTextY + 125, TEXT_LENGTH, TEXT_HEIGHT);
 		pwText.setOpaque(false);
 
 		add(idText);
@@ -53,27 +70,44 @@ public class MemberLogin extends JPanel {
 
 	}
 
+	/**
+	 * ID textField의 text값을 반환한다.
+	 * 
+	 * @return id 아이디 입력란에 작성한 text
+	 */
 	public String getUserID() {
 		return idText.getText();
 	}
 
 	public void paint(Graphics g) {
 
-		g.drawImage(background, 0, 0, 1280, 720, null); // background를 그려줌
+		g.drawImage(background, 0, 0, 1280, 720, null);
 		paintComponents(g);
-		this.repaint();// update() 메소드 자동호출
+		this.repaint();
 
-	}
+	} 
 
-	public boolean campare(String id, String pw) { // 아이디와 비밀번호 일치하는지 확인
+	/**
+	 * id와 pw를 통해 가입여부를 확인한다.
+	 * 
+	 * @param id user id
+	 * @param pw user pw
+	 * @return 회원이면 true, 그렇지 않으면 false
+	 */
+	public boolean campare(String id, String pw) {
 		if (id.equals(idText.getText()) && pw.equals(new String(pwText.getPassword()))) {
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * 로그인 가능한지 확인한다.
+	 * 
+	 * @return 로그인 가능하면 false, 그렇지 않으면 true
+	 */
 	public boolean checkLogin() {
-		boolean loginCheck = false; // false를 유지하면 로그인 가능
+		boolean loginCheck = false;
 
 		try (BufferedReader br = new BufferedReader(new FileReader("members.dat"))) {
 
