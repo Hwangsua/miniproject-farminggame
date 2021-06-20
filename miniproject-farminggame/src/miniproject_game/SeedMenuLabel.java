@@ -170,9 +170,4 @@ class SeedMenuLabel extends JLabel {
 		jbtn.setFocusPainted(false);
 
 	}
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e8d0c92d7528f66e17af2c49a7322b06e6fdac92
