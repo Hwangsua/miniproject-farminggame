@@ -16,7 +16,7 @@ import static miniproject_game.CommonValue.*;
  * 
  * @author SuaHwang
  * 
- */
+ */ 
 public class Seeds extends JLabel implements Runnable {
 
 	/**

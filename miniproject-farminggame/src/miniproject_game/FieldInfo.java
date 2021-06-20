@@ -5,7 +5,7 @@ package miniproject_game;
  * 
  * @author SuaHwang
  * @author EunkyungHwang
- */
+ */  
 class FieldInfo {
 	/**
 	 * 확장 할 수 있는 밭의 최대 갯수

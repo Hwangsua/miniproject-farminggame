@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-/**
+/**  
  * 본 프로그램의 StartFrame<br/>
  * 
  * 사용자의 마우스 입력에 따라 클릭소리 메소드를 호출하는 {@link MouseListener}를 포함한다.<br/>
@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  * 
  * @author EunKyungHwang
  * @author SuaHwang
- *
+ * 
  */
 
 public class StartFrame extends JFrame implements MouseListener, Runnable {

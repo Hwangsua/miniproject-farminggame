@@ -311,7 +311,7 @@ public class FarmingPanel extends JPanel {
 		g.drawImage(background, 0, 0, FARMING_PANEL_WIDTH, FARMING_PANEL_HEIGHT, this);
 		paintComponents(g);
 	}
-
+ 
 	/**
 	 * 밭 추가한다.
 	 * 

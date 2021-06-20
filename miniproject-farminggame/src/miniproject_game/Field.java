@@ -55,7 +55,7 @@ public class Field extends JLabel {
 	public void setY(int y) {
 		this.y = y;
 	}
-
+ 
 	/**
 	 * 밭의 상태를 설정한다.<br/>
 	 * 밭이 비어있으면 true, 그렇지 않으면 false로 설정한다.

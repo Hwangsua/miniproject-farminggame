@@ -4,7 +4,7 @@ package miniproject_game;
  * 스킬 지속 시간을 설정하고 실행하는 Thread
  * 
  * @author SuaHwang
- */
+ */ 
 public class SkillTimer implements Runnable {
 
 	static final int UNIT_SECOND = 1000;

@@ -11,7 +11,7 @@ import javax.sound.sampled.Clip;
  * 음악 사운드 출력을 위한 클래스
  * 
  * @author EunKyungHwang
- *
+ * 
  */
 public class SoundsClip {
 	/**

@@ -31,7 +31,7 @@ import static miniproject_game.CommonValue.*;
  * 
  * @author SuaHwang
  *
- */
+ */ 
 public class MemberSignUp extends JFrame implements ActionListener {
 
 	/**

@@ -20,7 +20,7 @@ import static miniproject_game.CommonValue.*;
  * 
  * @author EunKyungHwang
  *
- */
+ */ 
 public class MenuPanel extends JPanel {
 
 	final MainFrame main;
@@ -474,7 +474,7 @@ public class MenuPanel extends JPanel {
 		btnname.seedPurchase.setVisible(false);
 		btnname.seedUpgrade.setVisible(false);
 
-	}
+	}   
 
 	/**
 	 * menuImage 를 menuPanel에 출력한다.

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  * 게임의 진행을 돕기위한 메시지 창을 띄우는 클래스
- *
+ * 
  * @author SuaHwang
  *
  */

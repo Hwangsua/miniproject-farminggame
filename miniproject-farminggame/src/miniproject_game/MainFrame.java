@@ -140,7 +140,7 @@ public class MainFrame extends JFrame implements Serializable, WindowListener {
 	 */
 	public void createField(int col) {
 		farmingField.addField(col);
-	}
+	} 
 
 	/**
 	 * 

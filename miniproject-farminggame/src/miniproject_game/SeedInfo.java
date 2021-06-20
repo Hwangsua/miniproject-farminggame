@@ -12,7 +12,7 @@ import static miniproject_game.CommonValue.*;
  * 
  * @author SuaHwang
  *
- */
+ */ 
 public class SeedInfo {
 
 	final FarmingPanel farmingPanel;

@@ -16,7 +16,7 @@ import javax.swing.JLabel;
  * 
  * @author EunkyungHawang
  *
- */
+ */ 
 class SkillMenuLabel extends JLabel {
 
 	int btnY = 100;

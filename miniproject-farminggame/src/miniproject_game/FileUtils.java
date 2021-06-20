@@ -118,7 +118,7 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	/**
 	 * 파일에서 게임 데이터 불러온다.
 	 * 

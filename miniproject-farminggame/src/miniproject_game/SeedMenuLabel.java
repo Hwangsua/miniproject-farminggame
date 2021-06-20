@@ -12,7 +12,7 @@ import static miniproject_game.CommonValue.*;
  * 
  * @author EunKyungHwang
  *
- */
+ */ 
 class SeedMenuLabel extends JLabel {
 
 	/**

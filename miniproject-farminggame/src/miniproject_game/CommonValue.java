@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 
 public class CommonValue {
 
-	/**
+	/** 
 	 * 토마토
 	 */
 	public static final String TOMATO = "tomato";

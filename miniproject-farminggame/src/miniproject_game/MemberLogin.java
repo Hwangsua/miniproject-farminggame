@@ -85,7 +85,7 @@ public class MemberLogin extends JPanel {
 		paintComponents(g);
 		this.repaint();
 
-	}
+	} 
 
 	/**
 	 * id와 pw를 통해 가입여부를 확인한다.

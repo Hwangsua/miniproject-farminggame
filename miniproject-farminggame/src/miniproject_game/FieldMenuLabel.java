@@ -109,7 +109,7 @@ class FieldMenuLabel extends JLabel {
 	 * 
 	 * @param fieldLabelName
 	 * @since 1.0
-	 */
+	 */ 
 	private void init(String fieldLabelName) {
 		switch (fieldLabelName) {
 		case "fiedlBtn":
