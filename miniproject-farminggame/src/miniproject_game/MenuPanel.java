@@ -14,128 +14,167 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import static miniproject_game.CommonValue.*;
+
 /**
+ * menu1 , 2 , 3 를 출력하기 위한 JPanel
  * 
- * @author HwangEunkyung
+ * @author EunKyungHwang
  *
  */
 public class MenuPanel extends JPanel {
 
 	final MainFrame main;
+	/**
+	 * 밭 생성여부
+	 */
+	boolean isField = false;
+	/**
+	 * 백버튼 선택여부
+	 */
+	boolean selectbackbtn = false;
+	/**
+	 * mainscreen 선택여부
+	 */
+	boolean isMainScreen = true;
+	/**
+	 * skill1 구매여부
+	 */
+	boolean BuySkill1 = false;
+	/**
+	 * skill2 구매여부
+	 */
+	boolean BuySkill2 = false;
+	/**
+	 * skill3 구매여부
+	 */
+	boolean BuySkill3 = false;
 
-	boolean isField = false; // 밭이니?
-	boolean selectbackbtn = false;// 백버튼 선택되었니?
-	boolean isMainScreen = true; // 메인 화면이니?
-	boolean BuySkill1 = false; // 스킬 1 구매하였니?
-	boolean BuySkill2 = false; // 스킬 2 구매하였니?
-	boolean BuySkill3 = false; // 스킬 3 구매하였니?
+	private Image menuImage;
+	private Graphics screenGraphic;
+	private JButton backbtn;
+	JButton menu1;
+	JButton menu2;
+	JButton menu3;
 
-	private Image menuImage; //
-	private Graphics screenGraphic;// 도화지
-	private JButton backbtn; // 취소 버튼
-	JButton menu1; // 메뉴1 씨앗
-	JButton menu2; // 메뉴2 물
-	JButton menu3; // 메뉴3 땅
+	SkillMenuLabel skilllabel1;
+	SkillMenuLabel skilllabel2;
+	SkillMenuLabel skilllabel3;
 
-	SkillMenuLabel skilllabel1; // 물스킬 버튼1 생성
-	SkillMenuLabel skilllabel2; // 물스킬 버튼2 생성
-	SkillMenuLabel skilllabel3; // 물스킬 버튼3 생성
+	ImageIcon water1Icon;
+	ImageIcon water2Icon;
+	ImageIcon water3Icon;
 
-	ImageIcon water1Icon; // 워터 스킬 1 아이콘
-	ImageIcon water2Icon; // 워터 스킬 2 아이콘
-	ImageIcon water3Icon; // 워터 스킬 3 아이콘
+	ImageIcon enterseedIcon;
+	ImageIcon seedIcon;
+	ImageIcon waterIcon;
+	ImageIcon ExtendField;
 
-	ImageIcon enterseedIcon; // 메뉴 클릭시 아이콘
-	ImageIcon seedIcon; // 메뉴 1 아이콘
-	ImageIcon waterIcon; // 메뉴 2 아이콘
-	ImageIcon ExtendField; // 메뉴 3 아이콘
+	ImageIcon backIcon;
 
-	// 취소 이미지
-	ImageIcon enterhbarIcon;// 마우스커서 올렸을때 이미지
-	ImageIcon backIcon;// 뒤로가기 버튼 이미지
+	SeedMenuLabel tomatoLabel;
+	SeedMenuLabel riceLabel;
+	SeedMenuLabel eggplantLabel;
 
-	// 라벨 정보 , 구매 , 업그레이드 버튼 등 클래스로 선언
-	SeedMenuLabel tomatoLabel; // 씨앗 심기 클릭 시 토마토 라벨
-	SeedMenuLabel riceLabel; // 씨앗 심기 클릭 시 벼 라벨
-	SeedMenuLabel eggplantLabel; // 씨앗 심기 클릭 시 가지 라벨
-
-	SkillMenuLabel menu2waterSkill; // 물 버튼 클릭시 라벨
-	FieldMenuLabel menu3Field; // 밭 버튼 클릭시 라벨
-	FieldMenuLabel fakemenu3Field; // 가짜 버튼 모양
-	FieldInfo fieldInfo; // 밭 구매 조건 확인
-
-	//// 파일로드 테스트 /////////////
+	SkillMenuLabel menu2waterSkill;
+	FieldMenuLabel menu3Field;
+	FieldMenuLabel fakemenu3Field;
+	FieldInfo fieldInfo;
 
 	public boolean isBuySkill1() {
 		return BuySkill1;
-	}
-
-	public void setBuySkill1(boolean buySkill1) {
-		BuySkill1 = buySkill1;
 	}
 
 	public boolean isBuySkill2() {
 		return BuySkill2;
 	}
 
-	public void setBuySkill2(boolean buySkill2) {
-		BuySkill2 = buySkill2;
-	}
-
 	public boolean isBuySkill3() {
 		return BuySkill3;
+	}
+
+	public void setBuySkill1(boolean buySkill1) {
+		BuySkill1 = buySkill1;
+	}
+
+	public void setBuySkill2(boolean buySkill2) {
+		BuySkill2 = buySkill2;
 	}
 
 	public void setBuySkill3(boolean buySkill3) {
 		BuySkill3 = buySkill3;
 	}
-	//////////////////////////////
 
-	public MenuPanel(MainFrame MainFrame) {
-		this.main = MainFrame;
+	/**
+	 * MenuPanel 의 생성자 이미지 및 menu1,2,3, SeedMenuLabel 객체를 생성한다.
+	 * 
+	 * @param mainFrame MainFrame
+	 */
+	public MenuPanel(MainFrame mainFrame) {
+		this.main = mainFrame;
 		setLayout(null);
 		Size();
 
-		// 메뉴1 이미지
-		// 씨앗 버튼 마우스로 클릭시 변하는 이미지
+		/**
+		 * menu1 이미지생성
+		 */
 		seedIcon = new ImageIcon("image//menu1.png");
-		// 씨앗 버튼 기본이미지
+		/**
+		 * 씨앗 버튼 마우스로 클릭시 변하는 이미지
+		 */
 		enterseedIcon = IMG_FARMER;
 
-		// 메뉴2 이미지
-		// 물 버튼 기본이미지
+		/**
+		 * menu2 이미지생성
+		 */
 		waterIcon = new ImageIcon("image//menu1watering.png");
 
-		// 밭 확장 버튼 이미지
+		/**
+		 * menu3 이미지생성
+		 */
 		ExtendField = new ImageIcon("image//menu3.png");
 
-		// 취소 버튼 마우스로 클릭시 변하는 이미지
-		enterhbarIcon = new ImageIcon("image//apple.png");
-		// 취소 버튼 기본이미지
+		/**
+		 * 뒤로가기 버튼 생성
+		 */
 		backIcon = new ImageIcon("image//button.png");
 
-		menu1 = new JButton(seedIcon);// 씨앗심기 버튼 생성
-		menu2 = new JButton(waterIcon);// 물 버튼 생성
-		menu3 = new JButton(ExtendField);// 밭확장 버튼 생성
+		menu1 = new JButton(seedIcon);
+		menu2 = new JButton(waterIcon);
+		menu3 = new JButton(ExtendField);
 
-		// 메뉴 버튼 , 좌표 설정
+		/**
+		 * 메뉴 버튼 1의 y좌표 설정
+		 */
 		setMeue01Btn(menu1, 110);
-		setMeue01Btn(menu2, 300); // 300 =버튼 y 의 좌표 설정된 버튼값 불러오기
+		/**
+		 * 메뉴 버튼 2의 y좌표 설정
+		 */
+		setMeue01Btn(menu2, 300);
+		/**
+		 * 메뉴 버튼 3의 y좌표 설정
+		 */
 		setMeue01Btn(menu3, 500);
 		setBackbtn();
-		// 메뉴1 ,2,3 버튼 마우스 모션 및 반환값
-		setMenu2Mouse(menu2);// 메뉴 2 마우스
 
-		// 씨앗 메뉴 위치 배치 및 생성
+		setMenu2Mouse(menu2);
+
 		tomatoLabel = new SeedMenuLabel("tomatoLabel");
 		riceLabel = new SeedMenuLabel("riceLabel");
 		eggplantLabel = new SeedMenuLabel("eggplantLabel");
 
-	}// 기본생성자
+	}
 
-	// 메뉴버튼1(씨앗 심기 버튼)
+	/**
+	 * 
+	 * menu1 버튼에 MouseListener를 add().
+	 * 
+	 * @param menubtn
+	 * @param enterpicture
+	 * @param exitpicture
+	 * @since 1.0
+	 */
 	void setMenu01Mouse(JButton menubtn, ImageIcon enterpicture, ImageIcon exitpicture) {
-		
+		System.out.println(Arrays.toString(menubtn.getMouseListeners()));
 		if (menubtn.getMouseListeners().length == 1)
 			menubtn.addMouseListener(new MouseAdapter() {
 				@Override
@@ -154,35 +193,41 @@ public class MenuPanel extends JPanel {
 
 				@Override
 				public void mousePressed(MouseEvent e) {
-					
+
 					SoundsClip.play(SoundsClip.CLICK_SOUND);
 					JButton menubtn = (JButton) e.getSource();
-					farming();// 다른 버튼 가리기
+					farming();
 
-					showLabel(tomatoLabel);// 토마도 라벨 보이기
-					showLabel(riceLabel);// 쌀라벨 보이기
-					showLabel(eggplantLabel);// 가지라벨 보이기
+					showLabel(tomatoLabel);
+					showLabel(riceLabel);
+					showLabel(eggplantLabel);
 
-					plantingSeeds(tomatoLabel, TOMATO); // 씨앗 1 버튼
-					plantingSeeds(riceLabel, RICE);// 씨앗 2 버튼
-					plantingSeeds(eggplantLabel, EGGPLANT);// 씨앗 버튼
-					
+					plantingSeeds(tomatoLabel, TOMATO);
+					plantingSeeds(riceLabel, RICE);
+					plantingSeeds(eggplantLabel, EGGPLANT);
+
 				}
 
 			});
 	}
 
-	// 씨앗 심기 설정
+	/**
+	 * SeedMenuLabel 버튼에 MouseListener를 add().
+	 * 
+	 * @param seedLabel 다른 클래스의 객체들을 호출하기 위한 {@link SeedMenuLabel}형 레퍼런스
+	 * @param seedname  씨앗 이름
+	 * @since 1.0
+	 */
 	void plantingSeeds(SeedMenuLabel seedLabel, String seedname) {
-		// 씨앗심기 버튼 클릭시 구현화면
-		// 내부 라벨 위치 조정
+		/**
+		 * 메뉴라벨 부착
+		 */
 		addMenuLabel(seedLabel);
 
-		// 씨앗 업그레이드버튼 생성
 		if (seedLabel.seedUpgrade.getMouseListeners().length == 1)
 			seedLabel.seedUpgrade.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
-					if (main.farmingField.commonSeedInfo.checkSeedLevelUp(seedname)) { // 업그레이드 가능하진 확인하고 씨앗 레벨 업
+					if (main.farmingField.commonSeedInfo.checkSeedLevelUp(seedname)) {
 						seedLabel.seedLevelInfo.setText(seedLabel.setSeedStatus(seedname));
 					}
 				}
@@ -219,8 +264,14 @@ public class MenuPanel extends JPanel {
 			});
 	}
 
+	/**
+	 * menu2 버튼에 MouseListener를 add().
+	 * 
+	 * @param menu2
+	 * @since 1.0
+	 */
 	void setMenu2Mouse(JButton menu2) {
-		// menu2 마우스 구현
+
 		menu2.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -238,22 +289,20 @@ public class MenuPanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				SoundsClip.play(SoundsClip.CLICK_SOUND);
-				
 				farming();
 
-				skilllabel1 = new SkillMenuLabel(main, "waterSkill1");// 워터스킬 1 생성
-				skilllabel2 = new SkillMenuLabel(main, "waterSkill2");// 워터스킬 2 생성
-				skilllabel3 = new SkillMenuLabel(main, "waterSkill3");// 워터스킬 3 생성
+				skilllabel1 = new SkillMenuLabel(main, "waterSkill1");
+				skilllabel2 = new SkillMenuLabel(main, "waterSkill2");
+				skilllabel3 = new SkillMenuLabel(main, "waterSkill3");
 
-				setSkillUseBtn(skilllabel1); // 마우스 Skill1 Use 버튼 클릭시 설정
-				setSkillUseBtn(skilllabel2); // 마우스 Skill2 Use 버튼 클릭시 설정
-				setSkillUseBtn(skilllabel3); // 마우스 Skill3 Use 버튼 클릭시 설정
+				setSkillUseBtn(skilllabel1);
+				setSkillUseBtn(skilllabel2);
+				setSkillUseBtn(skilllabel3);
 
-				if (!BuySkill1) {// skill 구매후 구매버튼 가리기
+				if (!BuySkill1) {
 					skilllabel1.menu2_waterUse.setVisible(false);
 				}
 
-				// 물skill 구매 버튼 클릭
 				skilllabel1.menu2_waterPurchase.addMouseListener(new MouseAdapter() {
 					public void mousePressed(MouseEvent e) {
 						if (main.checkCoin(skilllabel1.getwaterSkillPrice())) {
@@ -278,11 +327,10 @@ public class MenuPanel extends JPanel {
 
 				});
 
-				if (!BuySkill2) {// skill 구매후 구매버튼 가리기
+				if (!BuySkill2) {
 					skilllabel2.menu2_waterUse.setVisible(false);
 				}
 
-				// 물skill 구매 버튼 클릭
 				skilllabel2.menu2_waterPurchase.addMouseListener(new MouseAdapter() {
 					public void mousePressed(MouseEvent e) {
 						if (main.checkCoin(skilllabel2.getwaterSkillPrice())) {
@@ -307,11 +355,10 @@ public class MenuPanel extends JPanel {
 
 				});
 
-				if (!BuySkill3) {// skill 구매후 구매버튼 가리기
+				if (!BuySkill3) {
 					skilllabel3.menu2_waterUse.setVisible(false);
 				}
 
-				// 물skill 구매 버튼 클릭
 				skilllabel3.menu2_waterPurchase.addMouseListener(new MouseAdapter() {
 					public void mousePressed(MouseEvent e) {
 						if (main.checkCoin(skilllabel3.getwaterSkillPrice())) {
@@ -340,7 +387,12 @@ public class MenuPanel extends JPanel {
 		});
 	}
 
-	// skillUse 버튼 사용시 마우스 설정
+	/**
+	 * 스킬 use버튼에 버튼에 MouseListener를 add().
+	 * 
+	 * @param skillmenu 다른 클래스의 객체들을 호출하기 위한 {@link SkillMenuLabel}형 레퍼런스
+	 * @since 1.0
+	 */
 	void setSkillUseBtn(SkillMenuLabel skillmenu) {
 		skillmenu.menu2_waterUse.addMouseListener(new MouseAdapter() {
 			@Override
@@ -356,10 +408,13 @@ public class MenuPanel extends JPanel {
 		});
 	}
 
-	// 뒤로가기 버튼 구현
+	/**
+	 * 백버튼 객체 생성/초기화 및 MouseListener를 add().
+	 * 
+	 * @since 1.0
+	 */
 	void setBackbtn() {
 
-		// 백버튼 모양 설정
 		backbtn = new JButton(backIcon);
 		backbtn.setVisible(false);
 		backbtn.setBounds(330, 15, 40, 40);
@@ -368,13 +423,12 @@ public class MenuPanel extends JPanel {
 		backbtn.setContentAreaFilled(false);
 		backbtn.setFocusPainted(false);
 
-		// 뒤로가기 버튼 마우스 설정
 		backbtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				backbtn.setIcon(enterseedIcon);
 				backbtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-				
+
 			}
 
 			@Override
@@ -387,27 +441,32 @@ public class MenuPanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				SoundsClip.play(SoundsClip.CLICK_SOUND);
-				
-				backMain();// 메인 화면 이동
-				// 가지씨앗가리기
+
+				backMain();
 				if (tomatoLabel != null) {
 					nonvisibleBtn(tomatoLabel);
 				}
-				// 토마토씨앗가리기
+
 				if (riceLabel != null) {
 					nonvisibleBtn(riceLabel);
 				}
-				// 벼씨앗가리기
+
 				if (eggplantLabel != null) {
 					nonvisibleBtn(eggplantLabel);
 				}
-				
+
 			}
 
 		});
 	}
 
-	// 씨앗버튼가리기
+	/**
+	 * 
+	 * 씨앗라벨 객체 가린다.
+	 * 
+	 * @param btnname 다른 클래스의 객체를 호출하기 위한 {@link SeedMenuLabel}형 레퍼런스
+	 * @since 1.0
+	 */
 	void nonvisibleBtn(SeedMenuLabel btnname) {
 
 		btnname.seedLevelInfo.setVisible(false);
@@ -417,40 +476,61 @@ public class MenuPanel extends JPanel {
 
 	}
 
+	/**
+	 * menuImage 를 menuPanel에 출력한다.
+	 * 
+	 * @param g 출력할 Graphics 객체
+	 */
+
 	public void paint(Graphics g) {
 		menuImage = createImage(400, MainFrame.MAIN_FRAME_WIDTH);
 		screenGraphic = menuImage.getGraphics();
-		screenDraw(screenGraphic);// 이미지 그려주기
+		screenDraw(screenGraphic);
 		g.drawImage(menuImage, 0, 0, null);
 
 	}
 
-	// 배경 설정
+	/**
+	 * 더블 버퍼링 기술 구현한다. isMain의 값에 따라 repaint 되여 출력한다.
+	 * 
+	 * @param g 출력할 Graphics객체
+	 */
+
 	public void screenDraw(Graphics g) {
 		if (isMainScreen) {
-			g.setColor(COLOR_BASE);// 배경이미지 노랑색으로 설정
-			g.fillRoundRect(0, 0, 400, 720, 5, 5);// 둥근네모 그리기
+			g.setColor(COLOR_BASE);
+			g.fillRoundRect(0, 0, 400, 720, 5, 5);
 
 		} else {
 
-			g.setColor(new Color(0xf2, 0xf2, 0xc2));// 배경이미지 노랑색으로 설정
-			g.fillRoundRect(0, 0, 400, 720, 5, 5);// 둥근네모 그리기
+			g.setColor(new Color(0xf2, 0xf2, 0xc2));
+			g.fillRoundRect(0, 0, 400, 720, 5, 5);
 		}
 
-		paintComponents(g);// 하위 구성요소에 대해 페인트 호출
+		paintComponents(g);
 
-		this.repaint();// update() 메소드 자동호출
+		this.repaint();
 
 	}
 
-	// 크기 설정
+	/**
+	 * 
+	 * MainFrame의 size를 설정한다.
+	 * 
+	 * @since 1.0
+	 */
 	void Size() {
 
 		setPreferredSize(new Dimension(400, 720));
 
 	}
 
-	// 메뉴버튼1 클릭시 화면 구현
+	/**
+	 * 
+	 * menu1,2,3 가리기 설정한다.
+	 * 
+	 * @since 1.0
+	 */
 	public void farming() {
 
 		isMainScreen = false;
@@ -470,12 +550,15 @@ public class MenuPanel extends JPanel {
 
 	}
 
-	// 나가기(x버튼) 버튼 클릭시 화면 구현
+	/**
+	 * 메인으로 돌아왔을때 화면 설정한다.
+	 * 
+	 * @since 1.0
+	 */
 	public void backMain() {
 
 		if (fakemenu3Field != null) {
 
-			// 가짜버튼밭가리기
 			fakemenu3Field.fieldImgLimit05.setVisible(false);
 			fakemenu3Field.fieldImgLimit010.setVisible(false);
 			fakemenu3Field.fieldImgLimit015.setVisible(false);
@@ -500,7 +583,6 @@ public class MenuPanel extends JPanel {
 		main.setPlantSeed(null);
 
 		if (menu3Field != null) {
-			// 밭가리기
 
 			menu3Field.fieldImgLimit05.setVisible(false);
 			menu3Field.fieldImgLimit010.setVisible(false);
@@ -509,16 +591,22 @@ public class MenuPanel extends JPanel {
 			menu3Field.fieldImgLimit025.setVisible(false);
 		}
 
-		// 물스킬가리기
 		hidewaterSkill(skilllabel1);
 		hidewaterSkill(skilllabel2);
 		hidewaterSkill(skilllabel3);
 
 	}
 
+	/**
+	 * 
+	 * 스킬메뉴라벨 가리기 설정한다.
+	 * 
+	 * @param skill 다른 클래스의 객체를 호출하기 위한 {@link SkillMenuLabel}형 레퍼런스
+	 * @since 1.0
+	 */
 	void hidewaterSkill(SkillMenuLabel skill) {
 		if (skill != null) {
-			// 물스킬가리기
+
 			skill.waterImg.setVisible(false);
 			skill.menu2_waterPurchase.setVisible(false);
 			skill.menu2_waterUse.setVisible(false);
@@ -526,16 +614,30 @@ public class MenuPanel extends JPanel {
 		}
 	}
 
-	// menu1 버튼 모양 설정
+	/**
+	 * 
+	 * menu1 버튼 초기값 설정한다.
+	 * 
+	 * @param btn
+	 * @param btnSetY 버튼의 Y 좌표
+	 * @since 1.0
+	 */
 	public void setMeue01Btn(JButton btn, int btnSetY) {
-		btn.setBounds(150, btnSetY, 100, 100);// 버튼좌표 , 가로세로
-		btn.setBorderPainted(false);// 버튼 테두리 없애기
-		btn.setContentAreaFilled(false);// 버튼 속 없애기
-		btn.setFocusPainted(false);// 버튼이 선택(Focus 되었을때 생기는 테두리 사용안함)
+		btn.setBounds(150, btnSetY, 100, 100);
+		btn.setBorderPainted(false);
+		btn.setContentAreaFilled(false);
+		btn.setFocusPainted(false);
 		add(btn);
 	}
 
-	// 각 menu3 영역 열기
+	/**
+	 * 
+	 * menu3 의 MouseListener를 add().
+	 * 
+	 * @param menubtn
+	 * @param enterpicture
+	 * @since 1.0
+	 */
 	void setMenu3Mouse(JButton menubtn, ImageIcon enterpicture) {
 		fieldInfo = new FieldInfo(this);
 		menubtn.addMouseListener(new MouseAdapter() {
@@ -555,51 +657,42 @@ public class MenuPanel extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				SoundsClip.play(SoundsClip.CLICK_SOUND);
-				
 				farming();
 
-				// 눈속임용 버튼
 				fakemenu3Field = new FieldMenuLabel("fakefiedlBtn");
 
-				// 땅필드선언
 				menu3Field = new FieldMenuLabel("fiedlBtn");
 
-				// 가짜버튼 붙이기
 				addFieldLabel(fakemenu3Field);
 
-				// 진짜 버튼
 				addFieldLabel(menu3Field);
 
-				// 생성된 밭 이미지 1만 보이기
 				visibleFieldLabel(menu3Field, true, false, false, false, false);
 
-				// 생성된 가짜 버튼 숨기기
 				visibleFieldLabel(fakemenu3Field, false, false, false, false, false);
 
-				if (FieldInfo.getExtendFieldCnt() == 1) { // 첫번째 땅이 열렸니??
-					// 첫번째 가짜버튼 보이기
+				if (FieldInfo.getExtendFieldCnt() == 1) {
+
 					visibleFieldLabel(fakemenu3Field, true, false, false, false, false);
-					// 진짜 버튼 보이기
+
 					menu3Field.fieldImgLimit010.setVisible(true);
 				}
 				if (FieldInfo.getExtendFieldCnt() == 2) {
-					// 두번째 가짜버튼 보이기
+
 					visibleFieldLabel(fakemenu3Field, true, true, false, false, false);
-					// 진짜 버튼 보이기
 
 					menu3Field.fieldImgLimit015.setVisible(true);
 				}
 				if (FieldInfo.getExtendFieldCnt() == 3) {
-					// 세번째 가짜버튼 보이기
+
 					visibleFieldLabel(fakemenu3Field, true, true, true, false, false);
-					// 진짜 버튼 보이기
+
 					menu3Field.fieldImgLimit020.setVisible(true);
 				}
 				if (FieldInfo.getExtendFieldCnt() == 4) {
-					// 네번째 가짜버튼 보이기
+
 					visibleFieldLabel(fakemenu3Field, true, true, true, true, false);
 
-					// 진짜 버튼 보이기
 					menu3Field.fieldImgLimit025.setVisible(true);
 				}
 				if (FieldInfo.getExtendFieldCnt() == 5) {
@@ -623,11 +716,10 @@ public class MenuPanel extends JPanel {
 
 						public void mousePressed(MouseEvent e) {
 
-							// 버튼 확장 조건
-							if (fieldInfo.checkfieldPurchase()) {// 버튼 확장 조건 확인
-								fieldInfo.fieldPurchase(); // 땅구매
-								setvisibleFieldMouse(false, true, false, false, false);// 버튼 보이기 및 땅 확장
-								fakemenu3Field.fieldImgLimit05.setVisible(true);// 가짜버튼1
+							if (fieldInfo.checkfieldPurchase()) {
+								fieldInfo.fieldPurchase();
+								setvisibleFieldMouse(false, true, false, false, false);
+								fakemenu3Field.fieldImgLimit05.setVisible(true);
 
 							}
 						}
@@ -648,11 +740,10 @@ public class MenuPanel extends JPanel {
 
 						public void mousePressed(MouseEvent e) {
 
-							// 버튼 확장 조건
-							if (fieldInfo.checkfieldPurchase()) { // 버튼 확장 조건 확인
-								fieldInfo.fieldPurchase(); // 땅구매
-								setvisibleFieldMouse(false, false, true, false, false);// 버튼 보이기 및 땅 확장
-								fakemenu3Field.fieldImgLimit010.setVisible(true);// 가짜버튼2
+							if (fieldInfo.checkfieldPurchase()) {
+								fieldInfo.fieldPurchase();
+								setvisibleFieldMouse(false, false, true, false, false);
+								fakemenu3Field.fieldImgLimit010.setVisible(true);
 
 							}
 
@@ -674,10 +765,10 @@ public class MenuPanel extends JPanel {
 
 						public void mousePressed(MouseEvent e) {
 
-							if (fieldInfo.checkfieldPurchase()) {// 버튼 확장 조건 확인
-								fieldInfo.fieldPurchase(); // 땅구매
-								setvisibleFieldMouse(false, false, false, true, false);// 버튼 보이기 및 땅 확장
-								fakemenu3Field.fieldImgLimit015.setVisible(true);// 가짜버튼3
+							if (fieldInfo.checkfieldPurchase()) {
+								fieldInfo.fieldPurchase();
+								setvisibleFieldMouse(false, false, false, true, false);
+								fakemenu3Field.fieldImgLimit015.setVisible(true);
 
 							}
 
@@ -700,11 +791,10 @@ public class MenuPanel extends JPanel {
 
 						public void mousePressed(MouseEvent e) {
 
-							// 버튼 확장 조건
-							if (fieldInfo.checkfieldPurchase()) {// 버튼 확장 조건 밭구역
-								fieldInfo.fieldPurchase(); // 땅구매
-								setvisibleFieldMouse(false, false, false, false, true);// 버튼 보이기 및 땅 확장
-								fakemenu3Field.fieldImgLimit020.setVisible(true);// 가짜버튼4
+							if (fieldInfo.checkfieldPurchase()) {
+								fieldInfo.fieldPurchase();
+								setvisibleFieldMouse(false, false, false, false, true);
+								fakemenu3Field.fieldImgLimit020.setVisible(true);
 
 							}
 
@@ -725,11 +815,11 @@ public class MenuPanel extends JPanel {
 						}
 
 						public void mousePressed(MouseEvent e) {
-							// 버튼 확장 조건
-							if (fieldInfo.checkfieldPurchase()) {// 버튼 확장 조건 밭구역
-								fieldInfo.fieldPurchase(); // 땅구매
-								setvisibleFieldMouse(false, false, false, false, false);// 버튼 보이기 및 땅 확장
-								fakemenu3Field.fieldImgLimit025.setVisible(true);// 가짜버튼5
+
+							if (fieldInfo.checkfieldPurchase()) {
+								fieldInfo.fieldPurchase();
+								setvisibleFieldMouse(false, false, false, false, false);
+								fakemenu3Field.fieldImgLimit025.setVisible(true);
 
 							}
 						}
@@ -744,7 +834,13 @@ public class MenuPanel extends JPanel {
 
 	}
 
-// 씨앗1,2,3 보이기
+	/**
+	 * 
+	 * menuLabel 객체를 화면에 출력한다.
+	 * 
+	 * @param menuLabel 다른 클래스의 객체를 호출하기 위한 {@link SeedMenuLabel}형 레퍼런스
+	 * @since 1.0
+	 */
 	void showLabel(SeedMenuLabel menuLabel) {
 		menuLabel.seedImg.setVisible(true);
 		menuLabel.seedPurchase.setVisible(true);
@@ -753,7 +849,13 @@ public class MenuPanel extends JPanel {
 
 	}
 
-	// 씨앗1,2,3 라벨 부착
+	/**
+	 * 
+	 * menuLabel의 객체들을 {@link MenuPanel}에 add().
+	 * 
+	 * @param menuLabel 다른 클래스의 객체를 호출하기 위한 {@link SeedMenuLabel}형 레퍼런스
+	 * @since 1.0
+	 */
 	void addMenuLabel(SeedMenuLabel menuLabel) {
 		add(menuLabel.seedImg);
 		add(menuLabel.seedPurchase);
@@ -762,7 +864,14 @@ public class MenuPanel extends JPanel {
 
 	}
 
-	// 땅 라벨 부착
+	/**
+	 * 
+	 * FieldMenuLabel의 객체들을 {@link MenuPanel}에 add().
+	 * 
+	 * @param fieldLabel 다른 클래스의 객체를 호출하기 위한 {@link FieldMenuLabel}형 레퍼런스
+	 * @since 1.0
+	 */
+
 	void addFieldLabel(FieldMenuLabel fieldLabel) {
 		add(fieldLabel.fieldImgLimit05);
 		add(fieldLabel.fieldImgLimit010);
@@ -772,7 +881,18 @@ public class MenuPanel extends JPanel {
 
 	}
 
-	// 밭 라벨 버튼 보이기 설정
+	/**
+	 * 
+	 * 밭 이미지들의 display 여부를 설정한다.
+	 * 
+	 * @param fieldLabel 다른 클래스의 객체를 호출하기 위한 {@link FieldMenuLabel}형 레퍼런스
+	 * @param fImg05     밭05 이미지display 여부
+	 * @param fImg010    밭010 이미지display 여부
+	 * @param fImg015    밭015 이미지display 여부
+	 * @param fImg020    밭020 이미지display 여부
+	 * @param fImg025    밭025 이미지display 여부
+	 * @since 1.0
+	 */
 	void visibleFieldLabel(FieldMenuLabel fieldLabel, boolean fImg05, boolean fImg010, boolean fImg015, boolean fImg020,
 			boolean fImg025) {
 
@@ -783,20 +903,31 @@ public class MenuPanel extends JPanel {
 		fieldLabel.fieldImgLimit025.setVisible(fImg025);
 	}
 
+	/**
+	 * 
+	 * 밭 클릭시 이미지display 여부 및 밭 생성 설정한다.
+	 * 
+	 * @param fieldimage1 밭01 이미지display 여부
+	 * @param fieldimage2 밭02 이미지display 여부
+	 * @param fieldimage3 밭03 이미지display 여부
+	 * @param fieldimage4 밭04 이미지display 여부
+	 * @param fieldimage5 밭05 이미지display 여부
+	 * @since 1.0
+	 */
 	void setvisibleFieldMouse(boolean fieldimage1, boolean fieldimage2, boolean fieldimage3, boolean fieldimage4,
 			boolean fieldimage5) {
 
-		menu3Field.fieldImgLimit05.setVisible(fieldimage1);// 현재 getOpenFieldCnt 땅이 열리는 카운트 0
-		menu3Field.fieldImgLimit010.setVisible(fieldimage2);// 밭 보일지 말지 결정
-		menu3Field.fieldImgLimit015.setVisible(fieldimage3);// 밭 보일지 말지 결정
-		menu3Field.fieldImgLimit020.setVisible(fieldimage4);// 밭 보일지 말지 결정
-		menu3Field.fieldImgLimit025.setVisible(fieldimage5);// 밭 보일지 말지 결정
+		menu3Field.fieldImgLimit05.setVisible(fieldimage1);
+		menu3Field.fieldImgLimit010.setVisible(fieldimage2);
+		menu3Field.fieldImgLimit015.setVisible(fieldimage3);
+		menu3Field.fieldImgLimit020.setVisible(fieldimage4);
+		menu3Field.fieldImgLimit025.setVisible(fieldimage5);
 		if (FieldInfo.getExtendFieldCnt() < 5) {
 			main.createField(FieldInfo.getExtendFieldCnt());
 			SoundsClip.play(SoundsClip.SUCCESS_SOUND);
-			FieldInfo.setExtendFieldCnt(FieldInfo.getExtendFieldCnt() + 1);// 밭의 상태 변화
+			FieldInfo.setExtendFieldCnt(FieldInfo.getExtendFieldCnt() + 1);
 		}
-		
+		System.out.println(FieldInfo.getLevelCriterion());
 	}
 
 }

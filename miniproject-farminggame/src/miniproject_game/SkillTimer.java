@@ -1,85 +1,98 @@
 package miniproject_game;
 
 /**
- * @author SuaHwang
+ * 스킬 지속 시간을 설정하고 실행하는 Thread
  * 
+ * @author SuaHwang
  */
-public class SkillTimer implements Runnable{
+public class SkillTimer implements Runnable {
 
-	private FarmingPanel farmingPanel;
-	
-	private int waterLevel; 
-	private int buffTime; // 스킬 효과 시간
-	private int timeReduction; // 재설정할 시간 감소값
 	static final int UNIT_SECOND = 1000;
+	final FarmingPanel farmingPanel;
+
+	private int skillLevel;
+	/**
+	 * 스킬의 효과가 적용되는 시간
+	 */
+	private int buffTime;
+	/**
+	 * 감소되는 시간
+	 */
+	private int timeReduction;
+
 	Seeds[][] seeds;
-	/*
-	 	물 스킬 레벨 1 효과 : 5초동안 1초 -> 2초
-	 	물 스킬 레벨 2 효과 : 10초동안 1초 -> 3초
-	 	물 스킬 레벨 3 효과 : 15초 1초 -> 5초
-	*/
-	
-	void setWaterLevel(int level) {
-		this.waterLevel = level;
+
+	/**
+	 * level로 스킬 레벨를 설정한다.
+	 * 
+	 * @param level 레벨
+	 */
+	void setSkillLevel(int level) {
+		this.skillLevel = level;
 	}
-	
-	void setBuff(int level) { // 버프 설정
+
+	/**
+	 * level에 맞게 스킬 효과를 설정한다.
+	 * 
+	 * @param level 스킬의 레벨
+	 */
+	void setBuff(int level) {
 		switch (level) {
-		case 1:  // 분무기
-			this.buffTime = 5*UNIT_SECOND;
-			this.timeReduction = 2*UNIT_SECOND;
+		case 1:
+			this.buffTime = 5 * UNIT_SECOND;
+			this.timeReduction = 2 * UNIT_SECOND;
 			break;
-		case 2: // 호스
-			this.buffTime = 10*UNIT_SECOND;
-			this.timeReduction = 3*UNIT_SECOND;
+		case 2:
+			this.buffTime = 10 * UNIT_SECOND;
+			this.timeReduction = 3 * UNIT_SECOND;
 			break;
-		case 3: // 드론 
-			this.buffTime = 15*UNIT_SECOND;
-			this.timeReduction = 5*UNIT_SECOND;
+		case 3:
+			this.buffTime = 15 * UNIT_SECOND;
+			this.timeReduction = 5 * UNIT_SECOND;
 			break;
-		
+
 		}
-		
+
 	}
-	
-	void changeTimeReduction(int time) {
+
+	/**
+	 * 심어진 모든 씨앗의 성장시간을 time만큼 추가적으로 감소시킨다.
+	 * 
+	 * @param time 감소되는 시간
+	 */
+	void addTimeReduction(int time) {
 		int cnt = 0;
-		for(int i=0; i < seeds.length ; i++) {
-			for(int j=0; j < seeds[i].length; j++) {
-				if(seeds[i][j] != null) {
-					seeds[i][j].setTimeReduction(time); // 1초동안 감소하는 시간 변경 
+		for (int i = 0; i < seeds.length; i++) {
+			for (int j = 0; j < seeds[i].length; j++) {
+				if (seeds[i][j] != null) {
+					seeds[i][j].setTimeReduction(time);
 				}
-	
+
 			}
 		}
 	}
-	
+
 	@Override
 	public void run() {
-		
+
 		try {
-			for(int i = 0; i < buffTime/1000; ++i) {
-				changeTimeReduction(timeReduction);
+			for (int i = 0; i < buffTime / 1000; ++i) {
 				Thread.sleep(1000);
+				addTimeReduction(timeReduction);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		} finally {
-			changeTimeReduction(1000); // 1초로 다시 바꾼다.
-			
 		}
+
 		farmingPanel.callback();
-		
+
 	}
-	
+
 	public SkillTimer(FarmingPanel farmingPanel, Seeds[][] seeds, int level) {
 		this.seeds = seeds;
 		this.farmingPanel = farmingPanel;
-		setWaterLevel(level);
+		setSkillLevel(level);
 		setBuff(level);
 	}
 
-
-
 }
-
