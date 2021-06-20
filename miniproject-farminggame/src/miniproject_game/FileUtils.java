@@ -23,7 +23,7 @@ import java.util.List;
  * @author SuaHwang
  */
 public class FileUtils {
-	/**
+	/** 
 	 * user의 현재 레벨
 	 */
 	public static final String USER_LEVEL = "userLevel";
