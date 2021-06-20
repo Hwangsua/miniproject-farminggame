@@ -323,4 +323,8 @@ public class Seeds extends JLabel implements Runnable {
 		g.drawImage(new ImageIcon(path).getImage(), 0, 0, IMG_SEED_WIDTH, IMG_SEED_HEIGHT, null);
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e8d0c92d7528f66e17af2c49a7322b06e6fdac92
