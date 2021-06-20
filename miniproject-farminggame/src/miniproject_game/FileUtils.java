@@ -47,7 +47,7 @@ public class FileUtils {
 	 * 가지 정보 리스트
 	 */
 	public static final String EGGPLANT_LIST = "eggplantList";
-	/**
+	/** 
 	 * 스킬(레벨1) 구매여부
 	 */
 	public static final String SKILL_LV1 = "buySkill1";
