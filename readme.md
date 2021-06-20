@@ -308,6 +308,6 @@ public class FileUtils {
 
 
 # 8. Javadoc
-[Javadoc](https://hwangsua.github.io/miniproject-farminggame/doc/index.html)
+[Javadoc](https://hwangsua.github.io/miniproject-farminggame/miniproject-farminggame/doc/miniproject_game/package-summary.html)
 
 ※ 사용된 이미지 출처는 image_souce.md파일에 있습니다.
