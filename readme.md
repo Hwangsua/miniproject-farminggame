@@ -86,7 +86,7 @@ Happy Farm 게임은 초보 농부인 유저를 위한 농촌체험 가이드를
 
 
 
-# 4. 시현 영상
+# 4. 시 영상
 
 [![img](https://camo.githubusercontent.com/c14b292ddcdbee1b57e7aa1c2842fe15428936a706b38aadc61f01d535e6656e/68747470733a2f2f696d672e796f75747562652e636f6d2f76692f5756457269453946634e4d2f6d7164656661756c742e6a7067)](https://www.youtube.com/watch?v=WVEriE9FcNM)
 
